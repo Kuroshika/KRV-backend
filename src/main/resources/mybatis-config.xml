@@ -11,7 +11,7 @@
             <!--dataSource 指连接源配置，POOLED是JDBC连接对象的数据源连接池的实现-->
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"></property>
-                <property name="url" value="jdbc:mysql://localhost:3306/KRV"/>
+                <property name="url" value="jdbc:mysql://mac:3306/KRV"/>
                 <property name="username" value="root"></property>
                 <property name="password" value="990701"></property>
             </dataSource>
