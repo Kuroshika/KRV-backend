@@ -1,12 +1,13 @@
-package com.kuka.krv.service;
+package com.kuka.krv.service.impl;
 
 import com.kuka.krv.entity.Info;
 import com.kuka.krv.dao.InfoRepository;
+import com.kuka.krv.service.InfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class InfoServiceImpl implements InfoService{
+public class InfoServiceImpl implements InfoService {
 
     @Autowired
     private InfoRepository infoRepository;

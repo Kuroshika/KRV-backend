@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuka.krv.dao.mapper.StatisticsInfoMapper">
+    <select id="getSubmissionCounts" resultType="Integer">
+        select COUNT(*) from resume_submissions;
+    </select>
+
+    <select id="getCompletedExamsCounts" resultType="Integer">
+        select COUNT(*) from time_nodes where node like "%笔试%" and state = 1;
+    </select>
+
+    <select id="getIncompleteExamsCounts" resultType="Integer">
+        select COUNT(*) from time_nodes where node like "%笔试%" and state = 0;
+    </select>
+
+    <select id="getCompletedEvaluationCounts" resultType="Integer">
+        select COUNT(*) from time_nodes where node like "%测评%" and state = 1;
+    </select>
+
+    <select id="getIncompleteEvaluationCounts" resultType="Integer">
+        select COUNT(*) from time_nodes where node like "%测评%" and state = 0;
+    </select>
+
+    <select id="getRejectionCounts" resultType="java.lang.Integer">
+        select COUNT(*) from time_nodes where node like "%拒%";
+    </select>
+</mapper>

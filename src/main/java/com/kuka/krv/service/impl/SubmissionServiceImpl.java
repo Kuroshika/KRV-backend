@@ -8,8 +8,10 @@ import com.kuka.krv.dao.SubmissionRepository;
 import com.kuka.krv.entity.TimeNode;
 import com.kuka.krv.service.SubmissionService;
 import com.kuka.krv.service.exceptions.SubmissionNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -24,6 +26,7 @@ public class SubmissionServiceImpl implements SubmissionService {
 
     @Override
     public Submission createSubmission(NewSubmissionDTO submissionDTO) {
+
         LocalDate currentDate = LocalDate.now();
         java.sql.Date currentSqlDate = java.sql.Date.valueOf(currentDate);
 
@@ -50,8 +53,10 @@ public class SubmissionServiceImpl implements SubmissionService {
     }
 
     @Override
+    @Transactional
     public void delSubmission(Long id) {
         submissionRepository.deleteById(id);
+        timeNodeRepository.deleteUsersBySubId(id);
     }
 
     @Override
@@ -68,7 +73,8 @@ public class SubmissionServiceImpl implements SubmissionService {
         existingSubmission.setPosition(submissionDTO.getPosition());
         existingSubmission.setBaseCity(submissionDTO.getBaseCity());
         existingSubmission.setSubmissionDate(submissionDTO.getSubmissionDate());
-        existingSubmission.setUpdatedDate(submissionDTO.getUpdatedDate());
+        java.sql.Date currentSqlDate = java.sql.Date.valueOf(LocalDate.now());
+        existingSubmission.setUpdatedDate(currentSqlDate);
 
 
         submissionRepository.save(existingSubmission);

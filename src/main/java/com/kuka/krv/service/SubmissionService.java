@@ -11,4 +11,5 @@ public interface SubmissionService {
     void delSubmission(Long id);
     Submission updateSubmission(Long id, SubmissionDTO submissionDTO);
     List<Submission> getAllSubmission();
+
 }
